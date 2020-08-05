@@ -1,0 +1,40 @@
+1. 관계형 데이터베이스(RDB): MSSQL, MariaDB, Oracle, SQLite, MySQL, PostgreSQL
+- 관계형 모델을 기반으로 함
+- 테이블 스키마 고정
+- SQL을 통해 CRUD 처리
+
+2. NoSQL(non SQL, not only SQL): MongoDB
+- 빠른 저장, 빠른 검색 => 빅데이터
+- 스키마 유동
+- 확장성
+
+3. MongoDB 설치
+
+4. mongodb shell 명령어
+1) database
+- db
+- use "database명"
+- show dbs
+- db.dropDatabase()
+
+2) collection
+- db.createCollecton("collection명")
+- show collections
+- db.music.drop()
+
+3) document
+- 추가: db.music.insert({})
+
+- 조회: db.music.find()
+  - db.music.find().pretty()
+  - db.music.find({},{_id:0, singer:1, ..})
+  - db.music.find().limit(2)
+  - db.music.find({singer:"아이유"})
+
+- 수정
+  - db.music.update({조회조건}, {수정내용})
+  - db.music.update({조회조건},{$set:{필드명:값}})
+
+- 제거
+  - db.music.remove({})
+  - db.music.remove({삭제조건})

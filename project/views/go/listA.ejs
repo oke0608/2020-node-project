@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../header"); %>
+<body>
+
+<%- include("../menu"); %>
+
+<button type="button" class="btn btn-outline-warning waves-effect" onclick="location.href='/api/go/new'">+</button>
+  <!--Grid row-->
+<div class="row">
+
+  <!--Grid column-->
+  <div class="col-md-6 mb-4">
+    <% result.forEach(go=>{ %>
+      <%if(go.fin){%>
+    <!--Card-->
+    <div class="card card-cascade narrower">
+      <button type="button" class="btn btn-outline-warning waves-effect" onclick="location.href='/api/go/<%= go._id %>'"><%=go.cafe%></button>
+    </div>
+    <!--/.Card-->
+    <%}%>
+    <% }) %>
+  </div>
+  <!--Grid column-->
+
+<%- include("../footer"); %>
+
+</body>
+</html>

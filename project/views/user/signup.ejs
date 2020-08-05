@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../header"); %>
+<body>
+
+<%- include("../menu"); %>
+<!-- Default form register -->
+<form id="signupForm" class="text-center border border-light p-5" action="#!">
+
+  <p class="h4 mb-4">Sign up</p>
+
+  <div class="form-row mb-4">
+      <div class="col">
+          <!-- First name -->
+          <input type="text" id="name" class="form-control" placeholder="Name">
+      </div>
+  </div>
+  <!-- ID -->
+  <input type="text" id="id" class="form-control mb-4" placeholder="ID">
+
+  <!-- Password -->
+  <input type="password" id="password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+  
+  <!-- Sign up button -->
+  <button class="btn rgba(233, 30, 99, 0.3) rgba-pink-light" type="submit" style="background: rgba(233, 30, 99, 0.3) rgba-pink-light;">Sign up</button>
+
+  <hr>
+
+</form>
+<!-- Default form register -->
+
+<%- include("../footer"); %>
+<script>
+  $(function(){
+    $("#signupForm").submit((event)=>{
+      event.preventDefault();
+      //등록
+      const name=$("#name").val();
+      const id=$("#id").val();
+      const password=$("#password").val();
+
+      $.ajax({
+        url: "/api/user/signup",
+        type: "POST",
+        data: { name, id, password }
+      }).done(()=>{
+        location.href='/';
+      }).fail((request, status, error)=>{
+        alert(request.responseText);
+      })
+    })
+  })
+</script>
+</body>
+</html>

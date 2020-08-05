@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>3619</title>
+<body>
+  <div class="container">
+    <h3>Project</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="msgForm">Message: </label>
+        <input type="text" class="form-control" id="msgForm">
+      </div>
+      <button type="submit">Send</button>
+    </form>
+    <div id="chatLogs"></div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+  $(function(){
+    var socket = io();//서버접속
+
+    //사용자 정보 전송
+    socket.emit("login", {
+      name: "YOO",
+      userid: "oke0608@naver.com"
+    });
+
+    socket.on("login", function(data) {
+      $("#chatLogs").append("<div><strong>" + data + "</strong> has joined</div>");
+    });
+
+    socket.on("chat", function(data) {
+      $("#chatLogs").append("<div>" + data.msg + " : from <strong>" + data.from.name + "</strong></div>");
+    });
+
+    //Send 버튼
+    $("form").submit(function(e) {
+      e.preventDefault();
+      var $msgForm = $("#msgForm");
+
+      //서버로 메시지 전송
+      socket.emit("chat", { msg: $msgForm.val() });
+      $msgForm.val("");
+    });
+
+  });
+  </script>
+</body>
+</html>

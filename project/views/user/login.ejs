@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../header"); %>
+<body>
+
+<%- include("../menu"); %>
+<!-- Default form login -->
+<form id="loginForm" class="text-center border border-light p-5" action="#!">
+
+  <p class="h4 mb-4">login</p>
+
+  <!-- ID -->
+  <input type="text" id="id" class="form-control mb-4" placeholder="ID">
+
+  <!-- Password -->
+  <input type="password" id="password" class="form-control mb-4" placeholder="Password">
+
+  <!-- Sign in button -->
+  <button class="btn rgba(233, 30, 99, 0.3) rgba-pink-light" type="submit">login</button>
+
+  <!-- Register -->
+  <p>Not a member?
+      <a href="/api/user/signup">Register</a>
+  </p>
+</form>
+<!-- Default form login -->
+
+
+<%- include("../footer"); %>
+<script>
+  $(function(){
+    $("#loginForm").submit((event)=>{
+      event.preventDefault();
+      //등록
+      const id=$("#id").val();
+      const password=$("#password").val();
+
+      $.ajax({
+        url: "/api/user/login",
+        type: "POST",
+        data: { id, password }
+      }).done(()=>{
+        location.href="/";
+      }).fail((request, status, error)=>{
+        alert(request.responseText);
+      })
+    })
+  })
+</script>
+</body>
+</html>

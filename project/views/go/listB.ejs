@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../header"); %>
+<body>
+
+<%- include("../menu"); %>
+
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-6 mb-4">
+      <% result.forEach(go=>{ %>
+        <%if(go.fin===false){%>
+      <!--Card-->
+      <div class="card card-cascade narrower">
+  
+        <!--Card image-->
+        <button type="button" class="btn btn-outline-warning waves-effect" onclick="location.href='/api/go/<%= go._id %>'"><%=go.cafe%></button>
+  
+        <!--/Card image-->
+  
+        <!--Card content-->
+  
+        <!--/.Card content-->
+  
+      </div>
+      <!--/.Card-->
+      <%}%>
+      <% }) %>
+    </div>
+    <!--Grid column-->
+  
+
+<%- include("../footer"); %>
+
+</body>
+</html>

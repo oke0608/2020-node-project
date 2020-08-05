@@ -1,0 +1,10 @@
+1. Express Generator 설치
+npm i express-generaor
+
+2. 실행
+1) express --view=pug 51_music
+2) npm install
+3) npm start
+
+3. npx 이용
+1) npx express-generator --view=ejs 52_movie
